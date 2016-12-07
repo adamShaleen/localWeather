@@ -9,14 +9,12 @@ var longitude = "";
   });
 
 $("#getWeather").click(function() {
-	$.getJSON("https://crossorigin.me/http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&APPID=41a877bfa230ba6c56b60795c0403aa1&units=imperial", function(json) {
-  	$("#location").html(json.name);
-    $("#temp").html(Math.round(json.main.temp));
-    $("#description").html(json.weather[0].description);
-    console.log(json.name, json.main.temp, json.weather[0].description);
+	$.getJSON("http://api.apixu.com/v1/current.json?key=4f7878f8d5bd48de89430958160712&q=" + latitude + "," + longitude, function(json) {
+    console.log(json);
+    $("#location").html(json.location.name + ", " + json.location.region);
+    $("#temp").html(json.current.temp_f + " F");
+    $("#description").html(json.current.condition.text);
   });
 });
 
 });
-
-// Hastings latitude 44.741194899999996 longitude -92.8635487
