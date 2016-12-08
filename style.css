@@ -1,1 +1,14 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500);
 
+body {
+    font-family: Raleway;
+    text-align: center;
+    margin: auto;
+}
+
+#by {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
