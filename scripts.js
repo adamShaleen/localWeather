@@ -1,6 +1,16 @@
 $(document).ready(function() {
 
-// empty placeholders for users coordinates
+// background images
+var sunny = "/img/sunny.jpg";
+var cloudy = "/img/cloudy.jpg";
+var snow = "/img/snow.jpg";
+var rain = "/img/rain.jpg";
+
+// hide temp toggle buttons on page load
+$("#changeToCelsius").hide();
+$("#changeToFahrenheit").hide();
+
+// empty placeholders for users coordinates and temp
 var latitude = "";
 var longitude = "";
 
@@ -21,7 +31,38 @@ var longitude = "";
                 $("#location").html(json.location.name + ", " + json.location.region);
                 $("#temp").html(json.current.temp_f + " °F");
                 $("#description").html(json.current.condition.text);
-                $("#icon").attr("src", json.current.condition.icon);
+				$("#icon").attr("src", json.current.condition.icon);
+				$("#changeToCelsius").show();
+
+				// assign condition to variable to check with include function
+				var condition = json.current.condition.text;
+
+				// background conditional statements
+				if (condition.includes("Cloudy") || condition.includes("Overcast")) {
+					$("body").css("background" , 'url("' + cloudy + '")');
+				} else if(condition.includes("snow") || condition.includes("Snow")) {
+					$("body").css("background", 'url("' + snow + '")');
+				} else if(condition.includes("Sun") || conition.includes("Sunny") || condition.includes("sun")) {
+					$("body").css("background", 'url("' + sunny + '")');
+				} else if(condition.includes("Rain") || condition.includes("Raining") || condition.includes("rain")) {
+					$("body").css("background", 'url("' + rain + '")');
+				}
+
+
+				// change temp to celsius and swap toggle button
+				$("#changeToCelsius").on("click", function() {
+		 		   $("#temp").html(json.current.temp_c + " °C");
+		 		   $("#changeToCelsius").hide();
+				   $("#changeToFahrenheit").show();
+		 	   });
+
+			   // change temp to fahrenheit and swap toggle button
+			   $("#changeToFahrenheit").on("click", function() {
+				   $("#temp").html(json.current.temp_f + " °F");
+				   $("#changeToCelsius").show();
+				   $("#changeToFahrenheit").hide();
+			   });
+
             }
         });
 
