@@ -14,17 +14,42 @@ body {
     margin: auto;
     margin-top: 100px;
     padding-top: 25px;
-    width: 300px;
-    height: 400px;
+    width: 400px;
+    height: 500px;
     background: rgba(255, 255, 255, 0.6);
+}
+
+#loader {
+    margin: auto;
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #6d6d6e;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 #changeToCelsius {
     cursor: pointer;
+    padding-top: 75px;
+}
+
+#changeToCelsius:hover {
+    color: rgb(124, 122, 119);
 }
 
 #changeToFahrenheit {
     cursor: pointer;
+    padding-top: 75px;
+}
+
+#changeToFahrenheit:hover {
+    color: rgb(124, 122, 119);
 }
 
 #by {
@@ -32,4 +57,6 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
+  color: white;
+  text-shadow: 1px 1px black;
 }

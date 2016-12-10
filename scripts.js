@@ -5,10 +5,19 @@ var sunny = "/img/sunny.jpg";
 var cloudy = "/img/cloudy.jpg";
 var snow = "/img/snow.jpg";
 var rain = "/img/rain.jpg";
+var clear = "/img/clear.jpg";
 
-// hide temp toggle buttons on page load
+// hide all content on load
+$("#location").hide();
+$("#temp").hide();
+$("#humidity").hide();
+$("#wind").hide();
+$("#description").hide();
+$("#description").hide();
+$("#icon").hide();
 $("#changeToCelsius").hide();
 $("#changeToFahrenheit").hide();
+$("#by").hide();
 
 // empty placeholders for users coordinates and temp
 var latitude = "";
@@ -27,27 +36,33 @@ var longitude = "";
             dataType: "json",
             url: "http://api.apixu.com/v1/current.json?key=4f7878f8d5bd48de89430958160712&q=" + latitude + "," + longitude,
             success: function(json) {
-                $("#loading").hide();
-                $("#location").html(json.location.name + ", " + json.location.region);
-                $("#temp").html(json.current.temp_f + " °F");
-                $("#description").html(json.current.condition.text);
-				$("#icon").attr("src", json.current.condition.icon);
-				$("#changeToCelsius").show();
+				console.log(json);
+				$("#loading").hide();
+                $("#loader").hide();
+                $("#location").html(json.location.name + ", " + json.location.region).fadeIn();
+                $("#temp").html(json.current.temp_f + " °F").fadeIn();
+				$("#humidity").html("Humidity " + json.current.humidity + "%").fadeIn();
+				$("#wind").html("Wind " + json.current.wind_mph + " mph from " + json.current.wind_dir).fadeIn();
+                $("#description").html(json.current.condition.text).fadeIn();
+				$("#icon").attr("src", json.current.condition.icon).fadeIn();
+				$("#changeToCelsius").fadeIn();
+				$("#by").fadeIn();
 
-				// assign condition to variable to check with include function
+				// assign condition to variable to check with .include() function
 				var condition = json.current.condition.text;
 
 				// background conditional statements
-				if (condition.includes("Cloudy") || condition.includes("Overcast")) {
+				if (condition.includes("Cloudy") || condition.includes("Overcast") || condition.includes("cloudy")) {
 					$("body").css("background" , 'url("' + cloudy + '")');
 				} else if(condition.includes("snow") || condition.includes("Snow")) {
 					$("body").css("background", 'url("' + snow + '")');
-				} else if(condition.includes("Sun") || conition.includes("Sunny") || condition.includes("sun")) {
+				} else if(condition.includes("Sun") || condition.includes("Sunny") || condition.includes("sun")) {
 					$("body").css("background", 'url("' + sunny + '")');
 				} else if(condition.includes("Rain") || condition.includes("Raining") || condition.includes("rain")) {
 					$("body").css("background", 'url("' + rain + '")');
+				} else if(condition.includes("Clear") || condition.includes("clear")) {
+					$("body").css("background", 'url("' + clear + '")');
 				}
-
 
 				// change temp to celsius and swap toggle button
 				$("#changeToCelsius").on("click", function() {
