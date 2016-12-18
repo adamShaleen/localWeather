@@ -6,6 +6,7 @@ var cloudy = "/img/cloudy.jpg";
 var snow = "/img/snow.jpg";
 var rain = "/img/rain.jpg";
 var clear = "/img/clear.jpg";
+var fog = "/img/fog.jpg";
 
 // hide all content on load
 $("#location").hide();
@@ -62,6 +63,8 @@ var longitude = "";
 					$("body").css("background", 'url("' + rain + '")');
 				} else if(condition.includes("Clear") || condition.includes("clear")) {
 					$("body").css("background", 'url("' + clear + '")');
+				} else if(condition.includes("Fog") || condition.includes("fog")) {
+					$("body").css("background", 'url("' + fog + '")');
 				}
 
 				// change temp to celsius and swap toggle button
