@@ -37,7 +37,6 @@ var longitude = "";
             dataType: "json",
             url: "http://api.apixu.com/v1/current.json?key=4f7878f8d5bd48de89430958160712&q=" + latitude + "," + longitude,
             success: function(json) {
-				console.log(json);
 				$("#loading").hide();
                 $("#loader").hide();
                 $("#location").html(json.location.name + ", " + json.location.region).fadeIn();
