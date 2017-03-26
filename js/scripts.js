@@ -1,12 +1,12 @@
 $(document).ready(function() {
 
 // background images
-var sunny = "/img/sunny.jpg";
-var cloudy = "/img/cloudy.jpg";
-var snow = "/img/snow.jpg";
-var rain = "/img/rain.jpg";
-var clear = "/img/clear.jpg";
-var fog = "/img/fog.jpg";
+var sunny = "style/img/sunny.jpg";
+var cloudy = "style/img/cloudy.jpg";
+var snow = "style/img/snow.jpg";
+var rain = "style/img/rain.jpg";
+var clear = "style/img/clear.jpg";
+var fog = "style/img/fog.jpg";
 
 // hide all content on load
 $("#location").hide();
